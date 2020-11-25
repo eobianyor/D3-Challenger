@@ -49,14 +49,14 @@ body {
 
 .tooltip {
   position: absolute;
-  width: 135px;
-  height: 120px;
+  width: 150px;
+  height: 75px;
   padding: 2px;
   padding-top: 8px;
   font: 12px sans-serif;
   color: white;
   text-align: center;
-  background: #551aaf;
+  background:#EC8AF6;
   border: 0;
   border-radius: 10px;
 }
