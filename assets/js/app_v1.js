@@ -75,16 +75,26 @@ d3.csv("data.csv").then(function (dataSet) {
         .append("circle")
         .attr("cx", d => xLinearScale(d.poverty))
         .attr("cy", d => yLinearScale(d.obesity))
-        .attr("r", "15")
-        .attr("color", "black")
-        .attr("fill", "pink")
+        .attr("r", 15)
+        .style("color", "orange")
+        .style("fill", "red")
         .attr("opacity", ".75");
+
+    // To put state abbr inside the circles
+    // ==============================
+    // circlesGroup = chartGroup.selectAll("text")
+    //     .data(dataSet)
+    //     .enter()
+    //     .append("text")
+    //     .text(d => `${d.abbr}`)
+    //     .attr("cx", d => xLinearScale(d.poverty))
+    //     .attr("cy", d => yLinearScale(d.obesity))
 
     // Initialize tool tip
     // ==============================
     var toolTip = d3.tip()
         .attr("class", "tooltip")
-        .offset([80, -60])
+        .offset([0, -20])
         .html(function (d) {
             return (`<strong>${d.state}</strong><hr> poverty (%): ${d.poverty}<br>obesity (%): ${d.obesity}`);
         });
@@ -98,7 +108,7 @@ d3.csv("data.csv").then(function (dataSet) {
     circlesGroup.on("click", function (data) {
         toolTip.show(data, this);
     })
-    // onmouseout event
+    // on mouseout event
     circlesGroup.on("mouseout", function (data, index) {
         toolTip.hide(data);
     });

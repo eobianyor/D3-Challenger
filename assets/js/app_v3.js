@@ -86,7 +86,7 @@ function renderYAxes(newYScale, yAxis) {
 
 // function used for updating circles group with a transition to
 // new circles
-function renderCircles(circlesGroup, newXScale, chosenXAxis, newYScale, chosenYAxis) {
+function renderCircles(circlesGroup, newXScale, chosenXaxis, newYScale, chosenYaxis) {
 
     circlesGroup.transition()
         .duration(1000)
@@ -151,12 +151,12 @@ function updateToolTip(chosenXAxis, chosenYAxis, circlesGroup) {
     circlesGroup.call(toolTip);
 
     circlesGroup.on("mouseover", function (data) {
-        toolTip.show(data, this);
+        toolTip.show(data);
     })
-    // onmouseout event
-    circlesGroup.on("mouseout", function (data, index) {
-        toolTip.hide(data);
-    });
+        // onmouseout event
+        .on("mouseout", function (data, index) {
+            toolTip.hide(data);
+        });
 
     // circlesGroup.on("mouseover", function (data) {
     //     d3.select(this)
@@ -318,7 +318,7 @@ d3.csv("data.csv").then(function (dataSet) {
                 xAxis = renderXAxes(xLinearScale, xAxis);
 
                 // updates circles with new x values
-                circlesGroup = renderCircles(circlesGroup, xLinearScale, chosenXAxis, yLinearScale, chosenYAxis);
+                circlesGroup = renderCircles(circlesGroup, xLinearScale, yLinearScale);
 
                 // updates tooltips with new info
                 circlesGroup = updateToolTip(chosenXAxis, chosenYAxis, circlesGroup);
@@ -380,7 +380,7 @@ d3.csv("data.csv").then(function (dataSet) {
                 yAxis = renderYAxes(yLinearScale, yAxis);
 
                 // updates circles with new x values
-                circlesGroup = renderCircles(circlesGroup, xLinearScale, chosenXAxis, yLinearScale, chosenYAxis);
+                circlesGroup = renderCircles(circlesGroup, xLinearScale, yLinearScale);
 
                 // updates tooltips with new info
                 circlesGroup = updateToolTip(chosenXAxis, chosenYAxis, circlesGroup);
