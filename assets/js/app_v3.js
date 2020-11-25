@@ -16,6 +16,8 @@ var margin = {
 
 var chartWidth = svgWidth - margin.left - margin.right;
 var chartHeight = svgHeight - margin.top - margin.bottom;
+var circleSize = 15
+var circleZoom = 30
 
 // Create an SVG wrapper,
 // append an SVG group that will hold our chart,
@@ -161,7 +163,7 @@ function updateToolTip(chosenXAxis, chosenYAxis, circlesGroup) {
         .attr("class", "tooltip")
         .offset([80, -60])
         .html(function (d) {
-            return (`<strong>${d.state}</strong><br>${xlabel} ${d[chosenXAxis]}<br>${ylabel} ${d[chosenYAxis]}`);
+            return (`<h6>${d.state}</h6><br>${xlabel} ${d[chosenXAxis]}<br>${ylabel} ${d[chosenYAxis]}`);
         });
 
     circlesGroup.call(toolTip);
@@ -170,12 +172,12 @@ function updateToolTip(chosenXAxis, chosenYAxis, circlesGroup) {
     // =================================================================
     circlesGroup.on("mouseover", function (data) {
         toolTip.show(data, this)
-        d3.select(this).style("stroke", "black").style("stroke-width", 3).attr("fill", "#66120C").attr("r", 30);
+        d3.select(this).style("stroke", "black").style("stroke-width", 3).attr("fill", "#66120C").attr("r", circleZoom);
     })
     // onmouseout event
     circlesGroup.on("mouseout", function (data, index) {
         toolTip.hide(data)
-        d3.select(this).style("stroke", "#FF756B").style("stroke-width", 1).attr("fill", "#E6001C").attr("r", 20);
+        d3.select(this).style("stroke", "#FF756B").style("stroke-width", 1).attr("fill", "#E6001C").attr("r", circleSize);
     });
 
     return circlesGroup;
@@ -224,7 +226,7 @@ d3.csv("data.csv").then(function (dataSet) {
         .append("circle")
         .attr("cx", d => xLinearScale(d[chosenXAxis]))
         .attr("cy", d => yLinearScale(d[chosenYAxis]))
-        .attr("r", 20)
+        .attr("r", circleSize)
         .attr("stroke", "#FF756B")
         .attr("stroke-width", 1)
         .attr("fill", "#E6001C")
