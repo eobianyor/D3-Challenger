@@ -2,7 +2,7 @@
 // Set up chart
 // Define SVG area dimensions
 // =================================================================
-var svgWidth = 960;
+var svgWidth = 1250;
 var svgHeight = 500;
 
 // Define the chart's margins as an object
@@ -11,7 +11,7 @@ var margin = {
     top: 40,
     right: 60,
     bottom: 100,
-    left: 100
+    left: 390
 };
 
 var chartWidth = svgWidth - margin.left - margin.right;
@@ -161,7 +161,7 @@ function updateToolTip(chosenXAxis, chosenYAxis, circlesGroup) {
 
     var toolTip = d3.tip()
         .attr("class", "tooltip")
-        .offset([80, -60])
+        .offset([80, -80])
         .html(function (d) {
             return (`<h6>${d.state}</h6><br>${xlabel} ${d[chosenXAxis]}<br>${ylabel} ${d[chosenYAxis]}`);
         });
@@ -185,7 +185,7 @@ function updateToolTip(chosenXAxis, chosenYAxis, circlesGroup) {
 
 // Retrieve data from the CSV file and execute everything below
 // =================================================================
-d3.csv("data.csv").then(function (dataSet) {
+d3.csv("assets/data/data.csv").then(function (dataSet) {
 
     // parse data
     dataSet.forEach(function (data) {
@@ -273,24 +273,24 @@ d3.csv("data.csv").then(function (dataSet) {
 
     var obesityLabel = ylabelsGroup.append("text")
         .attr("x", 0 - (chartHeight / 2))
-        .attr("y", 0 - margin.left)
-        .attr("dy", "1em")
+        .attr("y", 320 - margin.left)
+        // .attr("dy", "1em")
         .attr("value_y", "obesity") // value to grab for event listener
         .classed("active", true)
         .text("Obesity (%)");
 
     var incomeLabel = ylabelsGroup.append("text")
         .attr("x", 0 - (chartHeight / 2))
-        .attr("y", 20 - margin.left)
-        .attr("dy", "1em")
+        .attr("y", 340 - margin.left)
+        // .attr("dy", "1em")
         .attr("value_y", "income") // value to grab for event listener
         .classed("inactive", true)
         .text("Income ($)");
 
     var smokesLabel = ylabelsGroup.append("text")
         .attr("x", 0 - (chartHeight / 2))
-        .attr("y", 40 - margin.left)
-        .attr("dy", "1em")
+        .attr("y", 360 - margin.left)
+        // .attr("dy", "1em")
         .attr("value_y", "smokes") // value to grab for event listener
         .classed("inactive", true)
         .text("Smokes (%)");
