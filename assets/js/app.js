@@ -233,14 +233,14 @@ d3.csv("assets/data/data.csv").then(function (dataSet) {
         .attr("opacity", ".75");
 
     // Put state abbrevation text into the circles
-    var stateCircles = chartGroup.selectAll("text")
+    var stateCircles = chartGroup.selectAll(".statetext")
         .data(dataSet)
         .enter()
         .append("text")
         .text(d => `${d.abbr}`)
         .attr("dx", d => (xLinearScale(d[chosenXAxis]) - 11))
         .attr("dy", d => (yLinearScale(d[chosenYAxis]) + 6))
-        .attr("fill", "white")
+        .attr("fill", "white");
 
     // Create group for  3 x- axis labels
     var xlabelsGroup = chartGroup.append("g")
